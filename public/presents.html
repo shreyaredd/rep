@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Secret Presents</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+
+      #presents {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .present {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        background-color: #fff;
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        font-size: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .present:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+
+      #presentReveal {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 18px;
+        color: #333;
+        animation: pop 2s ease forwards;
+      }
+
+      @keyframes pop {
+        0% {
+          opacity: 0;
+          transform: scale(1);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .flower {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        background-image: url("flower.png");
+        background-size: contain;
+        animation: rotateFlower 10s ease infinite, moveFlower 10s ease forwards;
+      }
+
+      @keyframes rotateFlower {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes moveFlower {
+        0% {
+          top: 20px;
+        }
+        100% {
+          top: 1000px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Claim Your Presents!</h1>
+    <div id="presents">
+      <div class="present" onclick="revealPresent(1)">🎁</div>
+      <div class="present" onclick="revealPresent(2)">🎁</div>
+      <div class="present" onclick="revealPresent(3)">🎁</div>
+      <div class="present" onclick="revealPresent(4)">🎁</div>
+      <div class="present" onclick="revealPresent(5)">🎁</div>
+    </div>
+
+    <div id="presentReveal"></div>
+
+    <script>
+      var rechooseCount = 0;
+
+      function revealPresent(presentNumber) {
+        var present = document.querySelector("#presentReveal");
+
+        if (rechooseCount < 2) {
+          present.innerHTML =
+            "You've revealed Present " +
+            presentNumber +
+            " and you have received " +
+            Math.floor(Math.random() * 10 * presentNumber) +
+            " US dollars.";
+
+          var rechoose = confirm("Would you like to rechoose a present?");
+          if (rechoose) {
+            rechooseCount++;
+          } else {
+            rechooseCount = 0;
+          }
+
+          // Add flowers animation
+          for (let i = 0; i < 10; i++) {
+            setTimeout(() => {
+              createFlower();
+            }, i * 100);
+          }
+        } else {
+          present.innerHTML = "You've already rechoosen twice!";
+        }
+      }
+
+      function createFlower() {
+        var flower = document.createElement("div");
+        flower.classList.add("flower");
+        flower.style.left = Math.random() * window.innerWidth + "px";
+        document.body.appendChild(flower);
+        setTimeout(() => {
+          flower.remove();
+        }, 2000);
+      }
+    </script>
+  </body>
+</html>

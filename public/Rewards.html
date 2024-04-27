@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feedback Form</title>
+    <style>
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f8f8f8;
+        font-family: Arial, sans-serif;
+      }
+
+      .centered-div {
+        width: 300px;
+        height: auto;
+        background-color: #fff;
+        border: 2px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        padding: 20px;
+        overflow: hidden;
+        transition: height 0.5s ease-in-out;
+      }
+
+      h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      label {
+        font-size: 16px;
+        display: block;
+        margin-bottom: 10px;
+        color: #666;
+      }
+
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        resize: none;
+        transition: border-color 0.3s ease-in-out;
+      }
+
+      textarea:focus {
+        outline: none;
+        border-color: #aaa;
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      #thankYouMessage {
+        display: none;
+        margin-top: 20px;
+        font-size: 14px;
+        color: #555;
+      }
+
+      #thankYouMessage a {
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.3s ease-in-out;
+      }
+
+      #thankYouMessage a:hover {
+        color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="centered-div">
+      <h1>Feedback Form</h1>
+      <form id="feedbackForm">
+        <label for="feedback">Leave your feedback:</label><br />
+        <textarea id="feedback" name="feedback" rows="8" cols="400"></textarea
+        ><br />
+        <button type="submit">Submit</button>
+      </form>
+
+      <div id="thankYouMessage">
+        <p>
+          Thank you for your feedback! Click <a href="presents.html">here</a> to
+          claim your presents!
+        </p>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("feedbackForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          document.getElementById("feedbackForm").style.height = "0";
+          document.getElementById("thankYouMessage").style.display = "block";
+        });
+    </script>
+  </body>
+</html>
